@@ -1,11 +1,13 @@
-function App() {
+import { Outlet } from "react-router-dom";
+
+const App = () => {
   return (
     <div>
-      <h1 className="text-3xl text-red-600 text-center font-bold">
-        Catalogo de Produtos
-      </h1>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
