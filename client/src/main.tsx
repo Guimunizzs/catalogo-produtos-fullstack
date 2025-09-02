@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import "./index.css";
 import App from "./App.tsx";
 
@@ -22,8 +23,13 @@ const router = createBrowserRouter([
         element: <AdminLoginPage />,
       },
       {
-        path: "/admin/dashboard",
-        element: <AdminDashboard />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/admin/dashboard",
+            element: <AdminDashboard />,
+          },
+        ],
       },
     ],
   },
