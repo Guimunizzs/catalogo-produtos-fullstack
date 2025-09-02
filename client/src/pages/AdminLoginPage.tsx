@@ -16,7 +16,7 @@ const AdminLoginPage = () => {
 
     try {
       const data = await loginAdmin({ username: userName, password });
-      localStorage.setItem("adminToken", data.token);
+      localStorage.setItem("authToken", data.token);
       navigate("/admin/dashboard");
     } catch (error) {
       setError("Erro ao fazer login");
