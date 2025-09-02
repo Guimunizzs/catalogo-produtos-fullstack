@@ -35,3 +35,38 @@ export const loginAdmin = async (credentials: {
     throw error;
   }
 };
+
+export const createProduct = async (
+  productData: FormData,
+  token: string
+): Promise<Product> => {
+  try {
+    const response = await apiClient.post("/products", productData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao criar produto:", error);
+    throw error;
+  }
+};
+
+export const deleteProduct = async (
+  id: number,
+  token: string
+): Promise<any> => {
+  try {
+    const response = await apiClient.delete(`/products/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao deletar produto:", error);
+    throw error;
+  }
+};
