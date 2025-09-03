@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 const AdminLoginPage = () => {
-  const navigate = useNavigate();
+  const { login } = useAuth();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -15,9 +14,7 @@ const AdminLoginPage = () => {
     setError(null);
 
     try {
-      const data = await loginAdmin({ username: userName, password });
-      localStorage.setItem("authToken", data.token);
-      navigate("/admin/dashboard");
+      await login({ username: userName, password });
     } catch (error) {
       setError("Erro ao fazer login");
     } finally {

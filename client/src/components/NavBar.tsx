@@ -1,15 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
-  const navigate = useNavigate();
-
-  const token = localStorage.getItem("token");
-  const isLoggedIn = !!token;
-
-  const handleLogout = () => {
-    localStorage.removeItem("authtoken");
-    navigate("/");
-  };
+  const { isLoggedIn, logout } = useAuth();
 
   return (
     <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-10">
@@ -30,7 +23,7 @@ const NavBar = () => {
                 Dashboard
               </Link>
               <button
-                onClick={handleLogout}
+                onClick={logout}
                 className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
               >
                 Logout
