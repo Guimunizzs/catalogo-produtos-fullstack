@@ -9,6 +9,7 @@ import App from "./App.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import AdminLoginPage from "./pages/AdminLoginPage.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
+import AdminEditProductPage from "./pages/AdminEditProductPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
           {
             path: "/admin/dashboard",
             element: <AdminDashboard />,
+          },
+          {
+            path: "/admin/edit/:productId",
+            element: <AdminEditProductPage />,
           },
         ],
       },

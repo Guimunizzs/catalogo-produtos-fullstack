@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { type Product } from "../types/product.ts";
 import { getProducts, createProduct, deleteProduct } from "../services/api.ts";
+import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -138,6 +139,12 @@ const AdminDashboard = () => {
               <span>
                 {product.name} - R$ {Number(product.price).toFixed(2)}
               </span>
+              <Link
+                to={`/admin/edit/${product.id}`}
+                className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+              >
+                Editar
+              </Link>
               <button
                 onClick={() => handleDelete(Number(product.id))}
                 className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"

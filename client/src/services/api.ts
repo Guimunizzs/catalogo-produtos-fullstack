@@ -54,6 +54,36 @@ export const createProduct = async (
   }
 };
 
+export const getProductById = async (id: string): Promise<Product> => {
+  try {
+    const response = await apiClient.get<Product>(`/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar produto:", error);
+    throw error;
+  }
+};
+
+export const updateProduct = async (
+  id: string,
+  productData: FormData,
+  token: string
+): Promise<any> => {
+  try {
+    const response = await apiClient.put(`/products/${id}`, productData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    console.error("Erro ao atualizar produto:", error);
+    throw error;
+  }
+};
+
 export const deleteProduct = async (
   id: number,
   token: string
